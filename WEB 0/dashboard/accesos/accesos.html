@@ -1,0 +1,105 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Registro de Ingresos y Salidas</title>
+    <link rel="stylesheet" href="accesos.css">
+</head>
+<body>
+
+    <section id="accesos">
+        <h2>Registro de Ingresos y Salidas</h2>
+
+        <!-- Botón de Volver -->
+        <button class="btn-volver" onclick="location.href='accesos/adashboard/dashboard.html'">Volver</button>
+        <div class="filtros">
+            <div class="filtro">
+                <label for="filtro_fecha">Fecha:</label>
+                <input type="date" id="filtro_fecha">
+            </div>
+            <div class="filtro">
+                <label for="filtro_tipo">Tipo:</label>
+                <select id="filtro_tipo">
+                    <option value="todos">Todos</option>
+                    <option value="empleados">Empleados</option>
+                    <option value="visitantes">Visitantes</option>
+                    <option value="contratistas">Contratistas</option>
+                </select>
+            </div>
+            <button id="btn_filtrar">Filtrar</button>
+        </div>
+
+        <table>
+            <thead>
+                <tr>
+                    <th>ID</th>
+                    <th>Nombre</th>
+                    <th>Tipo</th>
+                    <th>Hora de Ingreso</th>
+                    <th>Hora de Salida</th>
+                    <th>Vehículo</th>
+                    <th>Estado</th>
+                </tr>
+            </thead>
+            <tbody id="tabla_accesos">
+                <tr>
+                    <td>1</td>
+                    <td>Juan Pérez</td>
+                    <td>empleados</td>
+                    <td>2024-03-11</td>
+                    <td>17:00</td>
+                    <td>ABC-123</td>
+                    <td><span class="estado estado-inactivo">Salida</span></td>
+                </tr>
+                <tr>
+                    <td>2</td>
+                    <td>María Rodríguez</td>
+                    <td>empleados</td>
+                    <td>2024-03-11</td>
+                    <td>-</td>
+                    <td>DEF-456</td>
+                    <td><span class="estado estado-activo">Presente</span></td>
+                </tr>
+                <tr>
+                    <td>3</td>
+                    <td>Carlos Gómez</td>
+                    <td>contratistas</td>
+                    <td>2024-03-11</td>
+                    <td>14:20</td>
+                    <td>-</td>
+                    <td><span class="estado estado-inactivo">Salida</span></td>
+                </tr>
+                <tr>
+                    <td>4</td>
+                    <td>Ana López</td>
+                    <td>visitantes</td>
+                    <td>2024-03-11</td>
+                    <td>-</td>
+                    <td>GHI-789</td>
+                    <td><span class="estado estado-activo">Presente</span></td>
+                </tr>
+                <tr>
+                    <td>5</td>
+                    <td>Roberto Sánchez</td>
+                    <td>empleados</td>
+                    <td>2024-03-11</td>
+                    <td>16:30</td>
+                    <td>-</td>
+                    <td><span class="estado estado-inactivo">Salida</span></td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="pagination">
+            <button>&laquo;</button>
+            <button class="active">1</button>
+            <button>2</button>
+            <button>3</button>
+            <button>&raquo;</button>
+        </div>
+    </section>
+
+    <script src="accesos.js"></script>
+
+</body>
+</html>

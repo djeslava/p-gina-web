@@ -1,0 +1,202 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #7e7e7e;
+}
+
+
+
+
+
+/* Encabezado header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.logo img {
+    height: 50px;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+}
+nav ul li {
+    margin-left: 2rem;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+nav ul li a:hover {
+    color: #4361ee;
+}
+
+
+
+
+
+/* Contenedor principal de registro */
+.contenedor-registro {
+    display: flex;
+    max-width: 1200px;
+    margin: 3rem auto;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.registro {
+    flex: 1;
+    padding: 3rem;
+}
+.registro h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #2b2d42;
+    text-align: center;
+}
+.campo-texto, .campo-contrasena {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2b2d42;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="password"] {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input[type="text"]:focus, 
+input[type="email"]:focus, 
+input[type="password"]:focus {
+    border-color: #4361ee;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+.ayuda-texto {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    color: #000000;
+}
+
+
+
+
+
+
+
+/* Botón de crear cuenta */
+.boton-crear-cuenta {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    background-color: #4361ee;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.boton-crear-cuenta:hover {
+    background-color: #022750;
+}
+
+
+
+
+
+
+/* Banner logo */
+.banner-lateral {
+    flex: 1;
+    background-color: #274770;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+.contenido-banner {
+    max-width: 80%;
+}
+.contenido-banner h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.contenido-banner p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+.contenido-banner img {
+    max-width: 100%;
+    height: auto;
+    filter: brightness(1.1);
+}
+
+
+
+
+/* Footer */
+footer {
+    background: #333;
+    color: #007BFF;
+    padding: 2rem 5%;
+    text-align: center; 
+}
+.footer-enlaces {
+    display: flex;
+    justify-content: center; 
+    gap: 10rem;
+    flex-wrap: wrap;
+}
+.footer-enlaces ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center; 
+}
+footer a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+    display: block; 
+}
+footer a:hover {
+    color: #007BFF;
+}
+
+.copyright {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #aaa; 
+}
