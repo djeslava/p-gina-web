@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="author" content="Interza">
+    <title>Interza - Registro</title>
+    <link rel="stylesheet" href="assets/css/registro.css">
+    <link rel="icon" href="favicon.ico" type="image/x-icon">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@100..900&display=swap" rel="stylesheet">
+</head>
+<body>
+    <header>
+        <div class="logo">
+            <img src="assets/images/logo_1.png" alt="Logo de Interza">
+        </div>
+        <nav aria-label="Navegación principal">
+            <div class="menu-icon">&#9776;</div>
+            <ul class="menu">
+                <li><a href="index.html">Inicio</a></li>
+                <li><a href="acerca.html">Acerca</a></li>
+                <li><a href="servicios.html">Servicios</a></li>
+                <li><a href="contacto.html">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+    
+    <main>
+        <section class="contenedor-registro">
+            <div class="registro">
+                <h2>Crea tu Cuenta</h2>
+                <form action="/registro" method="post" id="formulario-registro" novalidate>
+                    <div class="campo-texto">
+                        <label for="documento">Documento de Identidad</label>
+                        <input type="text" name="documento" id="documento" required placeholder="Tu documento de identidad">
+                    </div>
+                    
+                    <div class="campo-texto">
+                        <label for="nombre">Nombre Completo</label>
+                        <input type="text" name="nombre" id="nombre" required placeholder="Tu nombre">
+                    </div>
+
+                    <div class="campo-texto">
+                        <label for="correo">Correo Electrónico</label>
+                        <input type="email" name="correo" id="correo" required placeholder="Tu correo electrónico">
+                    </div>
+
+                    <div class="campo-contrasena">
+                        <label for="contrasena">Contraseña</label>
+                        <div class="contenedor-contrasena">
+                            <input type="password" name="contrasena" id="contrasena" required placeholder="Tu contraseña" minlength="8">
+                            <button type="button" id="mostrar-contrasena" class="toggle-password" aria-label="Mostrar contraseña">
+                                <span class="icono-ojo"></span>
+                            </button>
+                        </div>
+                        <small id="contrasena-help" class="ayuda-texto">Mínimo 8 caracteres, incluyendo una letra y un número</small>
+                    </div>
+
+                    <div class="campo-texto">
+                        <label for="confirmar-contrasena">Confirmar Contraseña</label>
+                        <input type="password" name="confirmar-contrasena" id="confirmar-contrasena" required placeholder="Confirma tu contraseña" minlength="8">
+                    </div>
+                    
+                    <div class="campo-texto">
+                        <label for="cargo">Cargo</label>
+                        <select name="cargo" id="cargo" required>
+                            <option value="">Selecciona tu cargo</option>
+                            <option value="Cliente">Cliente</option>
+                            <option value="Administrador">Administrador</option>
+                            <option value="Supervisor">Supervisor</option>
+                            <option value="Guardia">Guardia</option>
+                            <option value="Otro">Otro</option>
+                        </select>
+                    </div>
+
+                    <button class="boton-crear-cuenta" type="submit">Crear cuenta</button>
+                    <p class="registro-texto">¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
+                </form>
+            </div>
+            
+            <div class="banner-lateral">
+                <div class="contenido-banner">
+                    <h2>Únete a Nosotros</h2>
+                    <p>Accede a servicios exclusivos al registrarte en R-TAM.</p>
+                    <img src="assets/images/logo_1.png" alt="Ilustración de beneficios" width="300" height="200">
+                </div>
+            </div>
+        </section>
+    </main>
+    
+    <footer>
+        <div class="footer-contenido">
+            <div class="footer-enlaces">
+                <div class="columna">
+                    <h3>Compañía</h3>
+                    <ul>
+                        <li><a href="acerca.html">Sobre Nosotros</a></li>
+                        <li><a href="equipo.html">Nuestro Equipo</a></li>
+                        <li><a href="blog.html">Blog</a></li>
+                    </ul>
+                </div>
+                <div class="columna">
+                    <h3>Soporte</h3>
+                    <ul>
+                        <li><a href="ayuda.html">Centro de Ayuda</a></li>
+                        <li><a href="faq.html">Preguntas Frecuentes</a></li>
+                        <li><a href="contacto.html">Contacto</a></li>
+                    </ul>
+                </div>
+                <div class="columna">
+                    <h3>Legal</h3>
+                    <ul>
+                        <li><a href="terminos.html">Términos de Servicio</a></li>
+                        <li><a href="privacidad.html">Política de Privacidad</a></li>
+                        <li><a href="cookies.html">Política de Cookies</a></li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="copyright">
+            <p>&copy; 2025 R-TAM. Todos los derechos reservados.</p>
+        </div>
+    </footer>
+    <script src="assets/js/registro.js" defer></script>
+    <script>document.querySelector('.menu-icon').addEventListener('click', function() {
+        document.querySelector('nav ul').classList.toggle('active');
+    });
+    </script>
+</body>
+</html>

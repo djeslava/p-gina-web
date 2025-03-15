@@ -1,0 +1,244 @@
+/* Estilos generales */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+body {
+    font-family: 'Poppins', sans-serif;
+    background-color: #f4f4f4;
+    color: #333;
+}
+
+/* Encabezado header */
+header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 1rem 5%;
+    background-color: #fff;
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+    position: sticky;
+    top: 0;
+    z-index: 100;
+}
+.logo img {
+    height: 50px;
+}
+
+/* Menú de navegación */
+nav {
+    position: relative;
+}
+nav ul {
+    display: flex;
+    list-style: none;
+}
+nav ul li {
+    margin-left: 2rem;
+}
+nav ul li a {
+    text-decoration: none;
+    color: #333;
+    font-weight: 500;
+    transition: color 0.3s ease;
+}
+nav ul li a:hover {
+    color: #4361ee;
+}
+
+/* Botón menú hamburguesa */
+.menu-icon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+}
+
+/* Contenedor principal de registro */
+.contenedor-registro {
+    display: flex;
+    flex-wrap: wrap;
+    max-width: 1200px;
+    margin: 3rem auto;
+    background-color: #fff;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+.registro {
+    flex: 1;
+    padding: 3rem;
+}
+.registro h2 {
+    font-size: 2rem;
+    margin-bottom: 2rem;
+    color: #2b2d42;
+    text-align: center;
+}
+.campo-texto, .campo-contrasena, .campo-seleccion {
+    margin-bottom: 1.5rem;
+}
+
+label {
+    display: block;
+    margin-bottom: 0.5rem;
+    font-weight: 500;
+    color: #2b2d42;
+}
+
+input[type="text"], 
+input[type="email"], 
+input[type="password"],
+select {
+    width: 100%;
+    padding: 0.75rem;
+    border: 1px solid #e0e0e0;
+    border-radius: 5px;
+    font-size: 1rem;
+    transition: border-color 0.3s;
+}
+
+input:focus, select:focus {
+    border-color: #4361ee;
+    outline: none;
+    box-shadow: 0 0 0 2px rgba(67, 97, 238, 0.2);
+}
+
+.ayuda-texto {
+    display: block;
+    margin-top: 0.25rem;
+    font-size: 0.8rem;
+    color: #666;
+}
+
+/* Botón de crear cuenta */
+.boton-crear-cuenta {
+    width: 100%;
+    padding: 0.75rem;
+    margin-top: 1rem;
+    background-color: #4361ee;
+    border: none;
+    border-radius: 5px;
+    color: white;
+    font-size: 1rem;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background-color 0.3s;
+}
+.boton-crear-cuenta:hover {
+    background-color: #022750;
+}
+
+/* Banner lateral */
+.banner-lateral {
+    flex: 1;
+    background-color: #274770;
+    color: white;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    text-align: center;
+}
+.contenido-banner {
+    max-width: 80%;
+}
+.contenido-banner h2 {
+    font-size: 2rem;
+    margin-bottom: 1rem;
+}
+.contenido-banner p {
+    margin-bottom: 2rem;
+    font-size: 1.1rem;
+}
+.contenido-banner img {
+    max-width: 100%;
+    height: auto;
+    filter: brightness(1.1);
+}
+
+/* Footer */
+footer {
+    background: #333;
+    color: #ccc;
+    padding: 2rem 5%;
+    text-align: center; 
+}
+.footer-enlaces {
+    display: flex;
+    justify-content: center; 
+    gap: 10rem;
+    flex-wrap: wrap;
+}
+.footer-enlaces ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+    text-align: center; 
+}
+footer a {
+    color: #ccc;
+    text-decoration: none;
+    transition: color 0.3s;
+    display: block; 
+}
+footer a:hover {
+    color: #007BFF;
+}
+
+.copyright {
+    margin-top: 2rem;
+    font-size: 0.9rem;
+    color: #aaa; 
+}
+
+/* Responsividad */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+    .contenedor-registro {
+        flex-direction: column;
+    }
+    .registro, .banner-lateral {
+        width: 100%;
+        padding: 2rem;
+    }
+    .banner-lateral {
+        order: -1;
+    }
+    .footer-enlaces {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li {
+        margin: 0;
+        text-align: center;
+        padding: 1rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #fff;
+        width: 200px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+    nav ul.active {
+        display: flex;
+    }
+    
+    .menu-icon {
+        display: block;
+    }
+}
