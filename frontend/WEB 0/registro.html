@@ -30,9 +30,10 @@
             <div class="registro">
                 <h2>Crea tu Cuenta</h2>
                 <form action="/registro" method="post" id="formulario-registro" novalidate>
+
                     <div class="campo-texto">
                         <label for="documento">Documento de Identidad</label>
-                        <input type="text" name="documento" id="documento" required placeholder="Tu documento de identidad">
+                        <input type="text" name="DNI" id="documento" required placeholder="Tu documento de identidad">
                     </div>
                     
                     <div class="campo-texto">
@@ -42,13 +43,13 @@
 
                     <div class="campo-texto">
                         <label for="correo">Correo Electrónico</label>
-                        <input type="email" name="correo" id="correo" required placeholder="Tu correo electrónico">
+                        <input type="email" name="email" id="correo" placeholder="Tu correo electrónico">
                     </div>
 
                     <div class="campo-contrasena">
                         <label for="contrasena">Contraseña</label>
                         <div class="contenedor-contrasena">
-                            <input type="password" name="contrasena" id="contrasena" required placeholder="Tu contraseña" minlength="8">
+                            <input type="password" name="contraseña" id="contrasena" required placeholder="Tu contraseña" minlength="8">
                             <button type="button" id="mostrar-contrasena" class="toggle-password" aria-label="Mostrar contraseña">
                                 <span class="icono-ojo"></span>
                             </button>
@@ -60,7 +61,7 @@
                         <label for="confirmar-contrasena">Confirmar Contraseña</label>
                         <input type="password" name="confirmar-contrasena" id="confirmar-contrasena" required placeholder="Confirma tu contraseña" minlength="8">
                     </div>
-                    
+
                     <div class="campo-texto">
                         <label for="cargo">Cargo</label>
                         <select name="cargo" id="cargo" required>
@@ -74,6 +75,8 @@
                     </div>
 
                     <button class="boton-crear-cuenta" type="submit">Crear cuenta</button>
+                    
+                    
                     <p class="registro-texto">¿Ya tienes una cuenta? <a href="login.html">Inicia sesión aquí</a></p>
                 </form>
             </div>

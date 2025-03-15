@@ -4,8 +4,8 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js"
+    "start": "node backend/server.js",
+    "dev": "nodemon backend/server.js"
   },
   "repository": {
     "type": "git",
@@ -17,5 +17,13 @@
   "bugs": {
     "url": "https://github.com/Daidalosx2/p-gina-web/issues"
   },
-  "homepage": "https://github.com/Daidalosx2/p-gina-web#readme"
+  "homepage": "https://github.com/Daidalosx2/p-gina-web#readme",
+  "dependencies": {
+    "bcryptjs": "^3.0.2",
+    "body-parser": "^1.20.3",
+    "cors": "^2.8.5",
+    "dotenv": "^16.4.7",
+    "express": "^4.21.2",
+    "mysql2": "^3.13.0"
+  }
 }

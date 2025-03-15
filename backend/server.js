@@ -18,3 +18,19 @@ app.use('/api', userRoutes);
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
 });
+
+app.post('/registro', (req, res) => {
+    const { DNI, nombre, email, contraseña, cargo } = req.body;
+    const fechaRegistro = new Date(); // Obtiene la fecha y hora actual
+
+    const query = 'INSERT INTO usuario (DNI, nombre, email, contraseña, cargo, fechaRegistro) VALUES (?, ?, ?, ?, ?, ?)';
+    connection.query(query, [DNI, nombre, email, contraseña, cargo, fechaRegistro], (err, result) => {
+        if (err) {
+            console.error('Error al registrar usuario:', err);
+            res.status(500).json({ error: 'Error al registrar usuario' });
+        } else {
+            res.status(201).json({ message: 'Usuario registrado correctamente' });
+        }
+    });
+});
+
