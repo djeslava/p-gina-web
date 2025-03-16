@@ -1,6 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db'); // Importar la conexión a la base de datos
+const bcrypt = require('bcrypt'); // Para comparar contraseñas
 
 // **Ruta para registrar un nuevo usuario**
 router.post('/registro', async (req, res) => {
@@ -41,6 +42,48 @@ router.post('/registro', async (req, res) => {
                 return res.status(500).json({ error: 'Error inesperado en el servidor.' });
             }
             res.status(201).json({ message: 'Usuario registrado exitosamente.' });
+        });
+    });
+});
+
+
+// Ruta para iniciar sesión
+router.post('/login', (req, res) => {
+    const { DNI, contraseña } = req.body;
+
+    if (!DNI || !contraseña) {
+        return res.status(400).json({ error: "Todos los campos son obligatorios" });
+    }
+
+    const query = "SELECT * FROM usuario WHERE DNI = ?";
+    db.query(query, [DNI], async (err, results) => {
+        if (err) {
+            console.error("Error en la base de datos:", err);
+            return res.status(500).json({ error: "Error inesperado en el servidor" });
+        }
+
+        if (results.length === 0) {
+            return res.status(401).json({ error: "Usuario no encontrado" });
+        }
+
+        const usuario = results[0];
+
+        // Comparar contraseña ingresada con la almacenada en la base de datos
+        const contraseñaValida = await bcrypt.compare(contraseña, usuario.contraseña);
+        
+        if (!contraseñaValida) {
+            return res.status(401).json({ error: "Contraseña incorrecta" });
+        }
+
+        // Responder con los datos del usuario (sin la contraseña)
+        res.json({
+            message: "Inicio de sesión exitoso",
+            usuario: {
+                DNI: usuario.DNI,
+                nombre: usuario.nombre,
+                email: usuario.email,
+                cargo: usuario.cargo
+            }
         });
     });
 });

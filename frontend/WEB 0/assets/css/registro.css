@@ -7,6 +7,7 @@
 body {
     font-family: 'Montserrat', sans-serif;
     background-color: #f4f4f4;
+    line-height: 1.2;
     color: #333;
 }
 
@@ -15,7 +16,7 @@ header {
     display: flex;
     justify-content: space-between;
     align-items: center;
-    padding: 1rem 5%;
+    padding: 0.5rem 5%;
     background-color: #fff;
     box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
     position: sticky;
@@ -128,6 +129,11 @@ input:focus, select:focus {
 }
 .boton-crear-cuenta:hover {
     background-color: #022750;
+}
+
+.registro-texto {
+    padding: 25px;
+    padding-bottom: 0;
 }
 
 /* Banner lateral */
@@ -273,6 +279,11 @@ input.success {
     }
     .banner-lateral {
         order: -1;
+    }
+    .contenido-banner img {
+        max-width: 70%;
+        height: auto;
+        filter: brightness(1.1);
     }
     .footer-enlaces {
         flex-direction: column;
