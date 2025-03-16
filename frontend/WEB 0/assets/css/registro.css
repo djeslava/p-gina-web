@@ -5,7 +5,7 @@
     box-sizing: border-box;
 }
 body {
-    font-family: 'Poppins', sans-serif;
+    font-family: 'Montserrat', sans-serif;
     background-color: #f4f4f4;
     color: #333;
 }
@@ -192,6 +192,35 @@ footer a:hover {
     font-size: 0.9rem;
     color: #aaa; 
 }
+
+/* Estilos para notificaciones emergentes */
+.notificacion {
+    position: fixed;
+    top: 20px;
+    left: 50%;
+    transform: translateX(-50%);
+    padding: 12px 20px;
+    border-radius: 5px;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    min-width: 280px;
+    z-index: 1000;
+    color: #fff;
+    opacity: 1;
+    transition: opacity 0.5s ease-in-out;
+}
+
+/* Colores según el tipo de mensaje */
+.success { background-color: #4CAF50; } /* Verde */
+.error { background-color: #D32F2F; } /* Rojo */
+.warning { background-color: #FFC107; } /* Amarillo */
+
+/* Desaparecer la notificación después de unos segundos */
+.notificacion.fade-out {
+    opacity: 0;
+}
+
 
 /* Responsividad */
 @media (max-width: 768px) {
