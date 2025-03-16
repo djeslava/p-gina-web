@@ -199,28 +199,65 @@ footer a:hover {
     top: 20px;
     left: 50%;
     transform: translateX(-50%);
-    padding: 12px 20px;
-    border-radius: 5px;
-    font-size: 1rem;
-    font-weight: bold;
+    padding: 8px 16px;
+    border-radius: 8px;
+    font-size: 0.9rem;
+    font-weight: 500;
     text-align: center;
-    min-width: 280px;
+    min-width: 300px;
     z-index: 1000;
     color: #fff;
     opacity: 1;
-    transition: opacity 0.5s ease-in-out;
+    transition: opacity 0.5s ease-in-out, transform 0.5s ease-in-out;
+    box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+/* Desaparecer la notificación después de unos segundos */
+.notificacion.fade-out {
+    opacity: 0;
+    transform: translate(-50%, -20px);
 }
 
 /* Colores según el tipo de mensaje */
 .success { background-color: #4CAF50; } /* Verde */
 .error { background-color: #D32F2F; } /* Rojo */
-.warning { background-color: #FFC107; } /* Amarillo */
+.warning { background-color: #FFC107; color: #000; } /* Amarillo */
 
-/* Desaparecer la notificación después de unos segundos */
-.notificacion.fade-out {
-    opacity: 0;
+/* Iconos para los tipos de mensajes*/
+.notificacion.success::before {
+    content: '✔';
+    font-size: 1.2rem;
 }
 
+.notificacion.error::before {
+    content: '✖';
+    font-size: 1.2rem;
+}
+
+.notificacion.warning::before {
+    content: '⚠';
+    font-size: 1.2rem;
+}
+
+
+
+/* Estilo para campos con error */
+input.error {
+    border: 2px solid red !important;
+    color: red;
+    font-weight: bold;
+}
+
+/* Estilo para campos con validación correcta */
+input.success {
+    border: 2px solid green !important;
+    color: green;
+    font-weight: bold;
+}
 
 /* Responsividad */
 @media (max-width: 768px) {

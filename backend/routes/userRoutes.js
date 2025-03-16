@@ -8,7 +8,12 @@ router.post('/registro', async (req, res) => {
     
     // Validar que no haya campos vacíos
     if (!DNI || !nombre || !email || !contraseña || !cargo) {
-        return res.status(400).json({ error: 'Faltan campos por completar.' });
+        return res.status(400).json({ error: 'Faltan campos por completar' });
+    }
+
+    // Verificar que la contraseña tenga al menos 8 caracteres
+    if (contraseña.length < 8) {
+        return res.status(400).json({ error: 'La contraseña debe tener al menos 8 caracteres.' });
     }
 
     // Verificar si el usuario ya existe
