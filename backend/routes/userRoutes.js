@@ -3,6 +3,45 @@ const router = express.Router();
 const db = require('../config/db'); // Importar la conexión a la base de datos
 const bcrypt = require('bcrypt'); // Importar bcrypt para encriptar contraseñas
 
+// **Ruta de prueba**
+router.get('/', (req, res) => {
+    res.send('Ruta de prueba para usuarios');
+});
+
+// **Middleware para verificar autenticación**
+const verificarAutenticacion = (req, res, next) => {
+    if (!req.session.usuario) {
+        return res.status(401).json({ error: "No autorizado, por favor inicie sesión." });
+    }
+    next(); // Continuar con la ejecución si el usuario está autenticado
+};
+
+// **Ruta protegida: Obtener datos del usuario autenticado**
+router.get('/perfil', verificarAutenticacion, (req, res) => {
+    res.json(req.session.usuario);
+});
+
+
+// Ruta para cerrar sesión
+router.post('/logout', (req, res) => {
+    
+    if (req.session) {
+        req.session.destroy((err) => {
+            if (err) {
+                console.error("❌ Error al cerrar sesión:", err);
+                return res.status(500).json({ error: "Error al cerrar sesión" });
+            }
+
+            res.clearCookie("connect.sid"); // Limpiar la cookie de sesión
+            console.log("✅ Sesión finalizada correctamente");
+            res.status(200).json({ message: "Sesión finalizada correctamente" });
+        });
+    } else {
+        res.status(400).json({ error: "No hay una sesión activa" });
+    }
+});
+
+
 // **Ruta para registrar un nuevo usuario**
 router.post('/registro', async (req, res) => {
     const { DNI, nombre, email, contraseña, cargo } = req.body;
@@ -54,9 +93,9 @@ router.post('/registro', async (req, res) => {
 
 // Ruta para iniciar sesión
 router.post('/login', (req, res) => {
+    console.log("Datos recibidos en el backend:", req.body);
 
     const { dni, contraseña } = req.body;
-    console.log("Datos recibidos en el backend:", req.body);
 
     if (!dni || !contraseña) {
         console.log("⚠️ Faltan campos por completar");
@@ -84,10 +123,31 @@ router.post('/login', (req, res) => {
             console.log("⚠️ Contraseña incorrecta");
             return res.status(401).json({ error: "Contraseña incorrecta" });
         }
+
+        // Guardar usuario en la sesión
+        req.session.usuario = {
+            DNI: usuario.DNI,
+            nombre: usuario.nombre,
+            email: usuario.email,
+            cargo: usuario.cargo
+        };  
         
-        console.log("✅ Usuario autenticado correctamente");
-        res.status(200).json({ message: "Inicio de sesión exitoso", cargo: usuario.cargo });
+        console.log("✅ Usuario autenticado correctamente. Sesión guardada:", req.session.usuario);
+        res.status(200).json({ message: "Inicio de sesión exitoso", usuario: req.session.usuario });
     });
 });
 
+
+// **Ruta para verificar si el usuario tiene una sesión activa**
+router.get('/verificar-sesion', (req, res) => {
+    console.log("📢 Verificando sesión:", req.session.usuario);
+    
+    if (req.session.usuario) {
+        res.status(200).json({ autenticado: true, usuario: req.session.usuario.nombre, cargo: req.session.usuario.cargo });
+    } else {
+        res.status(401).json({ autenticado: false });
+    }
+});
+
+// Exportar el router (las rutas)
 module.exports = router;
