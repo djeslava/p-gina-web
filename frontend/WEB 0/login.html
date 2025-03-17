@@ -29,18 +29,12 @@
         <section class="contenedor-login">
             <div class="acceso">
                 <h2 id="titulo-login">Inicio de Sesión</h2>
-                <form action="/login" method="post" id="formulario-login" aria-labelledby="titulo-login">
+                <form action="/login" method="post" id="formulario-login" novalidate>
                     
-                    <label for="dni">Documento de Identidad</label>
-                    <input 
-                        type="text" 
-                        name="dni" 
-                        id="dni" 
-                        autocomplete="DNI" 
-                        placeholder="Tu documento de identidad"
-                        required 
-                        aria-describedby="correo-help">
-                    </input>
+                    <div class="campo-texto">
+                        <label for="dni">Documento de Identidad</label>
+                        <input type="text" name="dni" id="dni" required placeholder="Tu documento de identidad"></input>
+                    </div>                    
                     
                     <div class="campo-contrasena">
                         <label for="contraseña">Contraseña</label>
@@ -51,8 +45,7 @@
                                 id="contraseña" 
                                 required 
                                 placeholder="Tu contraseña" 
-                                minlength="8"
-                                aria-describedby="contrasena-help">
+                                minlength="8">
                             <button type="button" id="mostrar-contrasena" class="toggle-password" aria-label="Mostrar contraseña">
                                 <span class="icono-ojo" aria-hidden="true"></span>
                             </button>

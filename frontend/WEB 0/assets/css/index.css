@@ -1,9 +1,8 @@
-
 body {
     font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     margin: 0;
     padding: 0;
-    line-height: 1.6;
+    line-height: 1.2;
     color: #333;
     background-color: #ffffff;
 }
@@ -21,7 +20,7 @@ a:hover {
 header {
     background-color: #ffffff;
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.5);
-    padding: 1rem 2rem;
+    padding: 0.5rem 5%;
     display: flex;
     justify-content: space-between;
     align-items: center;
@@ -64,6 +63,15 @@ header nav ul li a.btn-register {
     background-color: #007BFF;
     color: #fff;
 }
+
+/* Botón menú hamburguesa */
+.menu-icon {
+    display: none;
+    font-size: 2rem;
+    cursor: pointer;
+    color: #333;
+}
+
 main {
     padding: 2rem;
     text-align: center;
@@ -89,9 +97,11 @@ main {
 footer {
     background-color: #333;
     color: #fff;
-    padding: 2rem 1rem;
+    padding: 0.5rem 5%;
     text-align: center;
+    box-sizing: border-box;
 }
+
 footer .footer-contenido {
     display: flex;
     justify-content: space-around;
@@ -101,7 +111,7 @@ footer .footer-contenido {
 footer .columna h3 {
     font-size: 1.1rem;
     margin-bottom: 1rem;
-    color: #007BFF;
+    color: #ccc;
 }
 footer .columna ul {
     list-style: none;
@@ -123,3 +133,47 @@ footer .copyright {
     color: #aaa;
 }
 
+/* Responsividad */
+@media (max-width: 768px) {
+    .menu-toggle {
+        display: flex;
+    }
+
+    header nav ul {
+        display: none;
+    }
+    
+    .footer-contenido {
+        flex-direction: column;
+        gap: 2rem;
+    }
+    nav ul {
+        flex-direction: column;
+        align-items: center;
+    }
+    nav ul li {
+        margin: 0;
+        text-align: center;
+        padding: 1rem;
+        border-bottom: 1px solid #ddd;
+    }
+
+    nav ul {
+        display: none;
+        flex-direction: column;
+        position: absolute;
+        top: 60px;
+        right: 0;
+        background: #fff;
+        width: 200px;
+        box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.2);
+        border-radius: 5px;
+    }
+    nav ul.active {
+        display: flex;
+    }
+    
+    .menu-icon {
+        display: block;
+    }
+}

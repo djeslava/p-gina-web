@@ -1,52 +1,3 @@
-// document.getElementById("formulario-login").addEventListener("submit", async function(event) {
-//     event.preventDefault();
-
-//     const dni = document.getElementById("DNI").value.trim();
-//     const contraseña = document.getElementById("contrasena").value.trim();
-
-//     if (!dni || !contraseña) {
-//         mostrarNotificacion("⚠ Todos los campos son obligatorios", "error");
-//         return;
-//     }
-
-//     try {
-//         const response = await fetch("http://localhost:3000/api/login", {
-//             method: "POST",
-//             headers: { "Content-Type": "application/json" },
-//             body: JSON.stringify({ DNI: dni, contraseña })
-//         });
-
-//         const result = await response.json();
-
-//         if (response.ok) {
-//             mostrarNotificacion("✅ Inicio de sesión exitoso. Redirigiendo...", "success");
-            
-//             // Guardar el usuario en localStorage
-//             localStorage.setItem("usuario", JSON.stringify(result.usuario));
-
-//             setTimeout(() => {
-//                 // Redirigir según el cargo
-//                 switch (result.usuario.cargo) {
-//                     case "Administrador":
-//                         window.location.href = "dashboard_admin.html";
-//                         break;
-//                     case "Supervisor":
-//                         window.location.href = "dashboard_supervisor.html";
-//                         break;
-//                     default:
-//                         window.location.href = "dashboard.html"; // Página general
-//                         break;
-//                 }
-//             }, 3000);
-//         } else {
-//             mostrarNotificacion(result.error, "error");
-//         }
-
-//     } catch (error) {
-//         mostrarNotificacion("⚠ Error inesperado en el servidor", "error");
-//     }
-// });
-
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("formulario-login");
 
@@ -56,10 +7,11 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     form.addEventListener("submit", async function (event) {
-        event.preventDefault();
+        event.preventDefault(); // Evita el envío predeterminado del formulario
 
         const dniInput = document.getElementById("dni");
         const contrasenaInput = document.getElementById("contraseña");
+        const contrasenaHelp = document.getElementById("contrasena-help"); // Mensaje de ayuda
 
         if (!dniInput || !contrasenaInput) {
             console.error("Error: No se encontraron los campos DNI o contraseña.");
@@ -69,15 +21,25 @@ document.addEventListener("DOMContentLoaded", function () {
         const dni = dniInput.value.trim();
         const contraseña = contrasenaInput.value.trim();
 
+        // Verificar si los campos están vacíos
         if (!dni || !contraseña) {
-            mostrarNotificacion("Todos los campos son obligatorios", "error");
+            mostrarNotificacion("Todos los campos son obligatorios", "warning");
             return;
         }
 
-        // const formData = new FormData(this);
-        // const data = Object.fromEntries(formData.entries());
+        // Validar que la contraseña tenga al menos 8 caracteres
+        if (contraseña.length < 8) {
+            contrasenaHelp.textContent = "⚠️ Mínimo 8 caracteres.";
+            contrasenaHelp.style.color = "red";
+            contrasenaInput.style.border = "2px solid red";
+            return;
+        } else {
+            contrasenaHelp.textContent = ""; // Restablecer el texto de ayuda
+            contrasenaHelp.style.color = ""; // Restablecer el color del texto
+            contrasenaInput.style.border = ""; // Restablecer el borde del campo
+        }
 
-        console.log("Datos enviados al backend:", { dni, contraseña }); // 👈 Agregar esta línea
+        console.log("Datos enviados al backend:", { dni, contraseña });
 
         try {
             const response = await fetch("http://localhost:3000/api/login", {
@@ -90,10 +52,10 @@ document.addEventListener("DOMContentLoaded", function () {
             console.log("Respuesta del servidor:", result);
 
             if (response.ok) {
-                mostrarNotificacion("Inicio de sesión exitoso", "success");
+                mostrarNotificacion("Inicio de sesión exitoso. Espera...", "success");
                 setTimeout(() => {
-                    window.location.href = "dashboard.html"; // Redirigir tras 3 segundos
-                }, 3000);
+                    window.location.href = "dashboard.html"; // Redirigir tras 2 segundos
+                }, 2000);
             } else {
                 mostrarNotificacion(result.error || "Error inesperado", "error");
             }
@@ -110,8 +72,17 @@ function mostrarNotificacion(mensaje, tipo) {
     notificacion.className = `notificacion ${tipo}`;
     notificacion.textContent = mensaje;
     
-    document.body.appendChild(notificacion);
+    // Agregar la notificación al contenedor (si no existe, se crea)
+    let contenedorNotificaciones = document.getElementById("contenedor-notificaciones");
+    if (!contenedorNotificaciones) {
+        contenedorNotificaciones = document.createElement("div");
+        contenedorNotificaciones.id = "contenedor-notificaciones";
+        document.body.appendChild(contenedorNotificaciones);
+    }
 
+    contenedorNotificaciones.appendChild(notificacion);
+
+    // Eliminar la notificación después de 3 segundos
     setTimeout(() => {
         notificacion.remove();
     }, 3000); // La notificación desaparece después de 3 segundos

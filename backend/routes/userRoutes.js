@@ -30,18 +30,7 @@ router.post('/registro', async (req, res) => {
         // ✅ Encriptar la contraseña antes de guardarla
         const salt = await bcrypt.genSalt(10); // Generar un salt para mayor seguridad
         const hashedPassword = await bcrypt.hash(contraseña, salt); // Hashear la contraseña
-
-    // db.query(checkUserQuery, [DNI], (err, result) => {
-    //     if (err) {
-    //         console.error('Error al verificar usuario:', err);
-    //         return res.status(500).json({ error: 'Error inesperado en el servidor.' });
-    //     }
-
-    //     if (result.length > 0) {
-    //         console.warn('Intento de registro con DNI existente:', DNI);
-    //         return res.status(409).json({ error: 'El usuario ya está registrado.' });
-    //     }
-
+    
         // Insertar nuevo usuario con la contraseña encryptada
         const fechaRegistro = new Date();
         const insertQuery = 'INSERT INTO usuario (DNI, nombre, email, contraseña, cargo, fechaRegistro) VALUES (?, ?, ?, ?, ?, ?)';
@@ -65,11 +54,9 @@ router.post('/registro', async (req, res) => {
 
 // Ruta para iniciar sesión
 router.post('/login', (req, res) => {
-    console.log("Datos recibidos en el backend:", req.body); // 👈 Agregar esta línea
 
     const { dni, contraseña } = req.body;
-
-    console.log("Datos recibidos en el backend:", req.body); // 👈 Agregar esta línea
+    console.log("Datos recibidos en el backend:", req.body);
 
     if (!dni || !contraseña) {
         console.log("⚠️ Faltan campos por completar");
@@ -97,17 +84,7 @@ router.post('/login', (req, res) => {
             console.log("⚠️ Contraseña incorrecta");
             return res.status(401).json({ error: "Contraseña incorrecta" });
         }
-
-        // Responder con los datos del usuario (sin la contraseña)
-        // res.json({
-        //     message: "Inicio de sesión exitoso",
-        //     usuario: {
-        //         DNI: usuario.DNI,
-        //         nombre: usuario.nombre,
-        //         email: usuario.email,
-        //         cargo: usuario.cargo
-        //     }
-        // });
+        
         console.log("✅ Usuario autenticado correctamente");
         res.status(200).json({ message: "Inicio de sesión exitoso", cargo: usuario.cargo });
     });

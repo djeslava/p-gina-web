@@ -40,11 +40,6 @@ document.getElementById("formulario-registro").addEventListener("submit", async 
         confirmPasswordField.style.border = "2px solid green";        
     }
 
-    // if (data.contraseña !== data["confirmar-contrasena"]) {
-    //     mostrarNotificacion("Las contraseñas no coinciden.", "error");
-    //     return;
-    // }
-
     try {
         const response = await fetch("http://localhost:3000/api/registro", {
             method: "POST",

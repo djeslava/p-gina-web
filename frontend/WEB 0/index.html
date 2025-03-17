@@ -16,7 +16,8 @@
             </a>
         </div>
         <nav aria-label="Navegación principal">
-            <ul>
+            <div class="menu-icon">&#9776;</div>
+            <ul class="menu">
                 <li><a href="acerca.html">Acerca</a></li>
                 <li><a href="servicios.html">Servicios</a></li>
                 <li><a href="contacto.html">Contacto</a></li>
@@ -27,13 +28,14 @@
     </header>
     <main>
         <section class="contenedor-principal">
-            <h1>Hola..</h1>
+            <h1>¡Hola!</h1>
             <p>Pronto podrás disfrutar de nuestros servicios</p>
             <img src="assets/images/logo_1.png" alt="Imagen representativa de Interza" width="300">
         </section>
     </main>
     <footer>
         <div class="footer-contenido">
+            <!-- <div class="footer-enlaces"> -->
                 <div class="columna">
                     <h3>Compañía</h3>
                     <ul>
@@ -58,12 +60,17 @@
                         <li><a href="cookies.html">Política de Cookies</a></li>
                     </ul>
                 </div>
-            </div>
+            <!-- </div> -->
         </div>
         <div class="copyright">
-            <p>&copy; 2024 Interza. Todos los derechos reservados.</p>
+            <p>&copy; 2025 R-TAM. Todos los derechos reservados.</p>
         </div>
     </footer>
+    <script>
+        document.querySelector('.menu-icon').addEventListener('click', function() {
+    document.querySelector('nav ul').classList.toggle('active');
+});
+    </script>    
 </body>
 </html>
 
