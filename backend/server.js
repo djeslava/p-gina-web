@@ -3,7 +3,7 @@ const express = require('express');
 const session = require('express-session');
 const MySQLStore = require("express-mysql-session")(session);
 const cors = require('cors');
-const bodyParser = require('body-parser');
+// const bodyParser = require('body-parser');
 const db = require('./config/db'); // Conexión a MySQL
 const userRoutes = require('./routes/userRoutes');
 
@@ -12,7 +12,20 @@ const port = process.env.PORT || 3000;
 
 
 // Configurar almacenamiento de sesiones en MySQL
-const sessionStore = new MySQLStore({}, db);
+const sessionStore = new MySQLStore({
+    clearExpired: true, // Limpiar sesiones expiradas automáticamente
+    checkExpirationInterval: 900000, // Intervalo para verificar sesiones expiradas (15 minutos)
+    expiration: 86400000, // Duración de la sesión (1 día en milisegundos)
+    createDatabaseTable: true, // Crear la tabla automáticamente si no existe
+    schema: {
+        tableName: 'sessions', // Nombre de la tabla
+        columnNames: {
+            session_id: 'session_id',
+            expires: 'expires',
+            data: 'data'
+        }
+    }
+}, db);
 
 // Configurar sesión
 app.use(session({
@@ -24,33 +37,25 @@ app.use(session({
     cookie: { 
         secure: false, // true en producción
         httpOnly: true, 
-        sameSite: 'lax',
-        maxAge: 86400000 } // duración de la sesión
+        sameSite: 'lax', // Política de SameSite para evitar problemas con CORS
+        // sameSite: 'none', // Cambia a 'none' para permitir solicitudes cruzadas
+        maxAge: 1000 * 60 * 60 * 24} // duración de la sesión (1 día)
 }));
 
 // Configurar CORS para permitir peticiones desde el frontend
 const corsOptions = {
     origin: "http://127.0.0.1:5500", // URL del frontend con Live Server
-    // methods: "GET,POST,PUT,DELETE",
     credentials: true // Permitir cookies y encabezados de autenticación
 };
 
 app.use(cors(corsOptions));
 app.use(express.json());
-// app.use(express.urlencoded({ extended: true }));
-app.use(bodyParser.urlencoded({ extended: true }));
+app.use(express.urlencoded({ extended: true }));
+// app.use(bodyParser.urlencoded({ extended: true }));
 
 // Usar las rutas
 app.use('/api', userRoutes);
 
-// Ruta de prueba para verificar sesión
-// app.get("/api/verificar-sesion", (req, res) => {
-//     if (req.session.usuario) {
-//         res.json({ autenticado: true, usuario: req.session.usuario });
-//     } else {
-//         res.status(401).json({ autenticado: false });
-//     }
-// });
 
 // Iniciar el servidor
 app.listen(port, () => {

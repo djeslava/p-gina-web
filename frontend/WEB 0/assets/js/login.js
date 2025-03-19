@@ -44,6 +44,7 @@ document.addEventListener("DOMContentLoaded", function () {
         try {
             const response = await fetch("http://localhost:3000/api/login", {
                 method: "POST",
+                credentials: "include", // Incluir cookies en la solicitud (para la sesión)
                 headers: { "Content-Type": "application/json" },
                 body: JSON.stringify({ dni, contraseña })
             });
@@ -55,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 mostrarNotificacion("Inicio de sesión exitoso. Espera...", "success");
                 setTimeout(() => {
                     window.location.href = "dashboard.html"; // Redirigir tras 2 segundos
-                }, 2000);
+                }, 300000);
             } else {
                 mostrarNotificacion(result.error || "Error inesperado", "error");
             }

@@ -44,7 +44,8 @@ document.getElementById("formulario-registro").addEventListener("submit", async 
         const response = await fetch("http://localhost:3000/api/registro", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
-            body: JSON.stringify(data)
+            body: JSON.stringify(data),
+            credentials: "include" // Enviar cookies de sesión 
         });
 
         const result = await response.json();

@@ -3,10 +3,10 @@ const router = express.Router();
 const db = require('../config/db'); // Importar la conexión a la base de datos
 const bcrypt = require('bcrypt'); // Importar bcrypt para encriptar contraseñas
 
-// **Ruta de prueba**
-router.get('/', (req, res) => {
-    res.send('Ruta de prueba para usuarios');
-});
+// // **Ruta de prueba**
+// router.get('/', (req, res) => {
+//     res.send('Ruta de prueba para usuarios');
+// });
 
 // **Middleware para verificar autenticación**
 const verificarAutenticacion = (req, res, next) => {
@@ -15,31 +15,6 @@ const verificarAutenticacion = (req, res, next) => {
     }
     next(); // Continuar con la ejecución si el usuario está autenticado
 };
-
-// **Ruta protegida: Obtener datos del usuario autenticado**
-router.get('/perfil', verificarAutenticacion, (req, res) => {
-    res.json(req.session.usuario);
-});
-
-
-// Ruta para cerrar sesión
-router.post('/logout', (req, res) => {
-    
-    if (req.session) {
-        req.session.destroy((err) => {
-            if (err) {
-                console.error("❌ Error al cerrar sesión:", err);
-                return res.status(500).json({ error: "Error al cerrar sesión" });
-            }
-
-            res.clearCookie("connect.sid"); // Limpiar la cookie de sesión
-            console.log("✅ Sesión finalizada correctamente");
-            res.status(200).json({ message: "Sesión finalizada correctamente" });
-        });
-    } else {
-        res.status(400).json({ error: "No hay una sesión activa" });
-    }
-});
 
 
 // **Ruta para registrar un nuevo usuario**
@@ -148,6 +123,43 @@ router.get('/verificar-sesion', (req, res) => {
         res.status(401).json({ autenticado: false });
     }
 });
+
+
+// Ruta para cerrar sesión
+router.post('/logout', (req, res) => {
+    
+    if (req.session) {
+        req.session.destroy((err) => {
+            if (err) {
+                console.error("❌ Error al cerrar sesión:", err);
+                return res.status(500).json({ error: "Error al cerrar sesión" });
+            }
+
+            res.clearCookie("connect.sid"); // Limpiar la cookie de sesión
+            console.log("✅ Sesión finalizada correctamente");
+            res.status(200).json({ message: "Sesión finalizada correctamente" });
+        });
+    } else {
+        res.status(400).json({ error: "No hay una sesión activa" });
+    }
+});
+
+
+// Grupo de rutas protegidas: Obtener datos del usuario autenticado
+router.use(verificarAutenticacion); // Aplica el middleware a todas las rutas siguientes
+
+router.get('/perfil', (req, res) => {
+    res.json(req.session.usuario);
+});
+
+router.get('/dashboard', (req, res) => {
+    res.json({ message: "Bienvenido al dashboard", usuario: req.session.usuario });
+});
+
+router.get('/configuracion', (req, res) => {
+    res.json({ message: "Configuración del usuario", usuario: req.session.usuario });
+});
+
 
 // Exportar el router (las rutas)
 module.exports = router;

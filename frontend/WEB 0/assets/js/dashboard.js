@@ -12,12 +12,10 @@
 //         console.log("Estado de sesión:", result);
 
 //         if (!response.ok || !result.autenticado) {            
-//             document.body.innerHTML = ""; // Evita mostrar el contenido de dashboard            
-//             mostrarNotificacion("Acceso denegado. Inicia sesión primero.", "error");
+//             // document.body.innerHTML = ""; // Evita mostrar el contenido de dashboard            
+//             // mostrarNotificacion("Acceso denegado. Inicia sesión primero.", "error");
+//             window.location.href = "index.html"; // Redirigir al login
             
-//             setTimeout(() => {
-//                 window.location.href = "index.html"; // Redirigir al login
-//             }, 25000);
 //         } else {
 //             mostrarNotificacion(`Bienvenido, ${result.usuario}.`, "success");
 //         }
