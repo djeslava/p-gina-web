@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db'); // Importar la conexión a la base de datos
-const bcrypt = require('bcrypt'); // Importar bcrypt para encriptar contraseñas
+const bcryptjs = require('bcryptjs'); // Importar bcrypt para encriptar contraseñas
 
 // // **Ruta de prueba**
 // router.get('/', (req, res) => {
@@ -42,8 +42,8 @@ router.post('/registro', async (req, res) => {
         }
 
         // ✅ Encriptar la contraseña antes de guardarla
-        const salt = await bcrypt.genSalt(10); // Generar un salt para mayor seguridad
-        const hashedPassword = await bcrypt.hash(contraseña, salt); // Hashear la contraseña
+        const salt = await bcryptjs.genSalt(10); // Generar un salt para mayor seguridad
+        const hashedPassword = await bcryptjs.hash(contraseña, salt); // Hashear la contraseña
     
         // Insertar nuevo usuario con la contraseña encryptada
         const fechaRegistro = new Date();
