@@ -44,7 +44,7 @@ app.use(session({
 
 // Configurar CORS para permitir peticiones desde el frontend
 const corsOptions = {
-    origin: "http://127.0.0.1:5500", // URL del frontend con Live Server
+    origin: "https://r-tam.onrender.com", // URL del frontend con Live Server
     credentials: true // Permitir cookies y encabezados de autenticación
 };
 
