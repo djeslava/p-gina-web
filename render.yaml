@@ -1,0 +1,6 @@
+services:
+  - type: web
+    name: mi-app
+    runtime: node
+    buildCommand: npm install && cd backend && npm install
+    startCommand: node backend/server.js
