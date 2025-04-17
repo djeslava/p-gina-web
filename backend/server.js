@@ -30,12 +30,12 @@ const sessionStore = new MySQLStore({
 // Configurar sesión
 app.use(session({
     key: "user_sid",
-    secret: 'clave_secreta_super_segura', // Usar una clave secreta en producción
+    secret: 'r-tam_ADSO_2025', // Usar una clave secreta en producción
     store: sessionStore, // Guardar sesiones en MySQL
     resave: false,
     saveUninitialized: false,
     cookie: { 
-        secure: false, // true en producción
+        secure: true, // true en producción
         httpOnly: true, 
         sameSite: 'lax', // Política de SameSite para evitar problemas con CORS
         // sameSite: 'none', // Cambia a 'none' para permitir solicitudes cruzadas
