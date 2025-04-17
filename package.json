@@ -6,6 +6,7 @@
   "scripts": {
     "start": "node backend/server.js",
     "dev": "nodemon backend/server.js"
+    "postinstall": "npm rebuild bcrypt --update-binary"
   },
   "repository": {
     "type": "git",
