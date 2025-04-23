@@ -108,6 +108,29 @@ app.get('/healthcheck', async (req, res) => {
     }
 });
 
+// Ruta raíz para el frontend
+app.get('/', (req, res) => {
+    res.send('Bienvenido al Sistema de Control de Acceso');
+});
+
+// Ruta para verificar que el backend funciona
+app.get('/api', (req, res) => {
+    res.json({
+        status: 'API funcionando',
+        database: process.env.DATABASE_URL ? 'Conectada' : 'No conectada'
+    });
+});
+
+const path = require('path');
+
+// Sirve archivos estáticos del frontend
+app.use(express.static(path.join(__dirname, '../frontend')));
+
+// Ruta de fallback para SPA (si usas React/Vue/Angular)
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../frontend/WEB 0/index.html'));
+});
+
 // Iniciar el servidor
 app.listen(port, () => {
     console.log(`Servidor corriendo en http://localhost:${port}`);
