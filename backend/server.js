@@ -124,7 +124,7 @@ app.get('/api', (req, res) => {
 const path = require('path');
 
 // Sirve archivos estáticos del frontend
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, '../frontend/WEB%200/index.html')));
 
 // Ruta de fallback para SPA (si usas React/Vue/Angular)
 app.get('*', (req, res) => {
