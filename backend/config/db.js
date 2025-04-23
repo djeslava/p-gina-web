@@ -1,22 +1,15 @@
-const mysql = require('mysql2');
+const { Pool } = require('pg');
 require('dotenv').config();
 
-// Configuración de la conexión a la base de datos
-const db = mysql.createConnection({
-    host: process.env.DB_HOST || 'localhost',
-    user: process.env.DB_USER || 'root',
-    password: process.env.DB_PASS || 'lamv_aimlds9714sa&d252728ruisu-san',
-    database: process.env.DB_NAME || 'r-tam',
-    port: process.env.DB_PORT || 3306
+// Configuración para PostgreSQL
+const pool = new Pool({
+    connectionString: process.env.DATABASE_URL || 'postgresql://usuario:contraseña@localhost:5432/r_tam',
+    ssl: process.env.NODE_ENV === 'production' ? { rejectUnauthorized: false } : false
 });
 
-// Conectar a la base de datos
-db.connect(err => {
-    if (err) {
-        console.error('Error al conectar a la base de datos:', err);
-        return;
-    }
-    console.log('Conexión a la base de datos establecida.');
-});
+// Verificación de conexión
+pool.query('SELECT NOW()')
+    .then(() => console.log('Conexión a PostgreSQL establecida.'))
+    .catch(err => console.error('Error al conectar a PostgreSQL:', err));
 
-module.exports = db;
+module.exports = pool;
