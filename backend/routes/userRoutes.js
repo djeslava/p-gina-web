@@ -20,7 +20,7 @@ const verificarAutenticacion = (req, res, next) => {
 // **Ruta para registrar un nuevo usuario**
 router.post('/registro', async (req, res) => {
     const { DNI, nombre, email, contraseña, cargo } = req.body;
-    
+
     // Validar que no haya campos vacíos
     if (!DNI || !nombre || !email || !contraseña || !cargo) {
         return res.status(400).json({ error: 'Faltan campos por completar' });
@@ -44,7 +44,7 @@ router.post('/registro', async (req, res) => {
         // ✅ Encriptar la contraseña antes de guardarla
         const salt = await bcrypt.genSalt(10); // Generar un salt para mayor seguridad
         const hashedPassword = await bcrypt.hash(contraseña, salt); // Hashear la contraseña
-    
+
         // Insertar nuevo usuario con la contraseña encryptada
         const fechaRegistro = new Date();
         const insertQuery = 'INSERT INTO usuario (DNI, nombre, email, contraseña, cargo, fechaRegistro) VALUES (?, ?, ?, ?, ?, ?)';
@@ -93,7 +93,7 @@ router.post('/login', (req, res) => {
 
         // Comparar contraseña ingresada con la almacenada en la base de datos
         const contraseñaValida = await bcrypt.compare(contraseña, usuario.contraseña);
-        
+
         if (!contraseñaValida) {
             console.log("⚠️ Contraseña incorrecta");
             return res.status(401).json({ error: "Contraseña incorrecta" });
@@ -105,8 +105,8 @@ router.post('/login', (req, res) => {
             nombre: usuario.nombre,
             email: usuario.email,
             cargo: usuario.cargo
-        };  
-        
+        };
+
         console.log("✅ Usuario autenticado correctamente. Sesión guardada:", req.session.usuario);
         res.status(200).json({ message: "Inicio de sesión exitoso", usuario: req.session.usuario });
     });
@@ -116,7 +116,7 @@ router.post('/login', (req, res) => {
 // **Ruta para verificar si el usuario tiene una sesión activa**
 router.get('/verificar-sesion', (req, res) => {
     console.log("📢 Verificando sesión:", req.session.usuario);
-    
+
     if (req.session.usuario) {
         res.status(200).json({ autenticado: true, usuario: req.session.usuario.nombre, cargo: req.session.usuario.cargo });
     } else {
@@ -127,7 +127,7 @@ router.get('/verificar-sesion', (req, res) => {
 
 // Ruta para cerrar sesión
 router.post('/logout', (req, res) => {
-    
+
     if (req.session) {
         req.session.destroy((err) => {
             if (err) {
