@@ -110,7 +110,8 @@ app.get('/healthcheck', async (req, res) => {
 
 // Ruta raíz para el frontend
 app.get('/', (req, res) => {
-    res.send('Bienvenido al Sistema de Control de Acceso');
+    // res.send('Bienvenido al Sistema de Control de Acceso');
+    res.sendFile(path.join(__dirname, '../frontend/WEB 0/index.html'))
 });
 
 // Ruta para verificar que el backend funciona
@@ -124,12 +125,8 @@ app.get('/api', (req, res) => {
 const path = require('path');
 
 // Sirve archivos estáticos del frontend
-app.use(express.static(path.join(__dirname, '../frontend/WEB%200/index.html')));
+app.use(express.static(path.join(__dirname, '../frontend/WEB 0')));
 
-// Ruta de fallback para SPA (si usas React/Vue/Angular)
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/WEB 0/index.html'));
-});
 
 // Iniciar el servidor
 app.listen(port, () => {
