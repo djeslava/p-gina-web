@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
 const db = require('../config/db'); // Importar la conexión a la base de datos
-const bcrypt = require('bcrypt'); // Importar bcrypt para encriptar contraseñas
+const bcrypt = require('bcryptjs'); // Importar bcrypt para encriptar contraseñas
 
 // // **Ruta de prueba**
 // router.get('/', (req, res) => {
