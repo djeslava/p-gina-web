@@ -3,10 +3,10 @@ const router = express.Router();
 const db = require('../config/db'); // Importar la conexión a la base de datos
 const bcrypt = require('bcryptjs'); // Importar bcrypt para encriptar contraseñas
 
-// // **Ruta de prueba**
-// router.get('/', (req, res) => {
-//     res.send('Ruta de prueba para usuarios');
-// });
+// **Ruta de prueba**
+router.get('/', (req, res) => {
+    res.send('Ruta de prueba para usuarios');
+});
 
 // **Middleware para verificar autenticación**
 const verificarAutenticacion = (req, res, next) => {
