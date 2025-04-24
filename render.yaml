@@ -2,5 +2,5 @@ services:
   - type: web
     name: r-tam
     runtime: node
-    buildCommand: npm install && npm run build 
+    buildCommand: npm install && cd backend && npm run build
     startCommand: npm start

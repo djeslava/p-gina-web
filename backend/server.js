@@ -7,7 +7,7 @@ const { Pool } = require('pg'); // Cambiamos a pg (PostgreSQL)
 const userRoutes = require('./routes/userRoutes');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10000;
 
 // Configuración del pool de PostgreSQL (reemplaza a MySQL)
 const pool = new Pool({
@@ -44,13 +44,15 @@ app.use(session({
 
 // Configurar CORS para permitir peticiones desde el frontend
 const corsOptions = {
-    origin: process.env.NODE_ENV === 'production'
-        ? 'https://r-tam.onrender.com'
-        : 'http://127.0.0.1:5500',
-    credentials: true // Permitir cookies y encabezados de autenticación
+    origin: "https://r-tam.onrender.com", // URL del frontend
+    credentials: true, // Permitir cookies y encabezados de autenticación
+    methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+    allowedHeaders: ["Content-Type", "Authorization"]
 };
 
 app.use(cors(corsOptions));
+
+app.options('*', cors(corsOptions)); // Para manejar preflight
 
 // Middleware para parsear JSON y URL-encoded
 app.use(express.json());
@@ -110,7 +112,6 @@ app.get('/healthcheck', async (req, res) => {
 
 // Ruta raíz para el frontend
 app.get('/', (req, res) => {
-    // res.send('Bienvenido al Sistema de Control de Acceso');
     res.sendFile(path.join(__dirname, '../frontend/WEB 0/index.html'))
 });
 

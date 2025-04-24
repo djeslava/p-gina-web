@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Datos enviados al backend:", { dni, contraseña });
 
         try {
-            const response = await fetch("http://localhost:3000/api/login", {
+            const response = await fetch("/api/login", {
                 method: "POST",
                 credentials: "include", // Incluir cookies en la solicitud (para la sesión)
                 headers: { "Content-Type": "application/json" },
@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 mostrarNotificacion("Inicio de sesión exitoso. Espera...", "success");
                 setTimeout(() => {
                     window.location.href = "dashboard.html"; // Redirigir tras 2 segundos
-                }, 300000);
+                }, 2000);
             } else {
                 mostrarNotificacion(result.error || "Error inesperado", "error");
             }
@@ -72,7 +72,7 @@ function mostrarNotificacion(mensaje, tipo) {
     const notificacion = document.createElement("div");
     notificacion.className = `notificacion ${tipo}`;
     notificacion.textContent = mensaje;
-    
+
     // Agregar la notificación al contenedor (si no existe, se crea)
     let contenedorNotificaciones = document.getElementById("contenedor-notificaciones");
     if (!contenedorNotificaciones) {
@@ -86,5 +86,5 @@ function mostrarNotificacion(mensaje, tipo) {
     // Eliminar la notificación después de 3 segundos
     setTimeout(() => {
         notificacion.remove();
-    }, 3000); // La notificación desaparece después de 3 segundos
+    }, 2000); // La notificación desaparece después de 2 segundos
 }

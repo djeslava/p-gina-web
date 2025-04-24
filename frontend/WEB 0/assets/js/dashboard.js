@@ -1,40 +1,40 @@
 // PENDIENTE: CORREGIR LA VERIFICACIÓN DE SESIÓN
 
-// // Verificar la sesión del usuario al cargar la página
-// document.addEventListener("DOMContentLoaded", async function () {
-//     try {
-//         const response = await fetch("http://localhost:3000/api/verificar-sesion", {
-//             method: "GET",
-//             credentials: "include", // Importante para enviar la cookie de sesión
-//         });
+// Verificar la sesión del usuario al cargar la página
+document.addEventListener("DOMContentLoaded", async function () {
+    try {
+        const response = await fetch("/api/verificar-sesion", {
+            method: "GET",
+            credentials: "include", // Importante para enviar la cookie de sesión
+        });
 
-//         const result = await response.json();
-//         console.log("Estado de sesión:", result);
+        const result = await response.json();
+        console.log("Estado de sesión:", result);
 
-//         if (!response.ok || !result.autenticado) {            
-//             // document.body.innerHTML = ""; // Evita mostrar el contenido de dashboard            
-//             // mostrarNotificacion("Acceso denegado. Inicia sesión primero.", "error");
-//             window.location.href = "index.html"; // Redirigir al login
-            
-//         } else {
-//             mostrarNotificacion(`Bienvenido, ${result.usuario}.`, "success");
-//         }
+        if (!response.ok || !result.autenticado) {
+            // document.body.innerHTML = ""; // Evita mostrar el contenido de dashboard            
+            // mostrarNotificacion("Acceso denegado. Inicia sesión primero.", "error");
+            window.location.href = "index.html"; // Redirigir al login
 
-//     } catch (error) {
-//         console.error("Error al verificar sesión:", error);
-//         mostrarNotificacion("Error al validar la sesión.", "error");
-//         setTimeout(() => {
-//             window.location.href = "index.html";
-//         }, 1500);
-//     }
-// });
+        } else {
+            mostrarNotificacion(`Bienvenido, ${result.usuario}.`, "success");
+        }
+
+    } catch (error) {
+        console.error("Error al verificar sesión:", error);
+        mostrarNotificacion("Error al validar la sesión.", "error");
+        setTimeout(() => {
+            window.location.href = "index.html";
+        }, 1500);
+    }
+});
 
 // Cerrar sesión
 document.querySelector(".logout").addEventListener("click", async function (event) {
     event.preventDefault(); // Evitar que el enlace actúe como un link normal
 
     try {
-        const response = await fetch("http://localhost:3000/api/logout", {
+        const response = await fetch("/api/logout", {
             method: "POST",
             credentials: "include", // Para que se envíen cookies de sesión
             headers: { "Content-Type": "application/json" }
