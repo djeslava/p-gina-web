@@ -82,9 +82,12 @@ app.get('/healthcheck', async (req, res) => {
     }
 });
 
+// Sirve archivos estáticos del frontend
+app.use(express.static(path.join(__dirname, '../frontend')));
+
 // Ruta raíz para el frontend
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/WEB 0/index.html'))
+    res.sendFile(path.join(__dirname, '../frontend/index.html'))
 });
 
 // Ruta para verificar que el backend funciona
@@ -94,9 +97,6 @@ app.get('/api', (req, res) => {
         database: process.env.DATABASE_URL ? 'Conectada' : 'No conectada'
     });
 });
-
-// Sirve archivos estáticos del frontend
-app.use(express.static(path.join(__dirname, '../frontend/WEB 0')));
 
 
 // Iniciar el servidor
