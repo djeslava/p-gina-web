@@ -7,7 +7,7 @@ const { Pool } = require('pg'); // Cambiamos a pg (PostgreSQL)
 const userRoutes = require('./routes/userRoutes');
 
 const app = express();
-const port = process.env.PORT || 3000;
+const port = process.env.PORT || 10000;
 
 // Configuración del pool de PostgreSQL (reemplaza a MySQL)
 const pool = new Pool({
@@ -110,7 +110,6 @@ app.get('/healthcheck', async (req, res) => {
 
 // Ruta raíz para el frontend
 app.get('/', (req, res) => {
-    // res.send('Bienvenido al Sistema de Control de Acceso');
     res.sendFile(path.join(__dirname, '../frontend/WEB 0/index.html'))
 });
 
