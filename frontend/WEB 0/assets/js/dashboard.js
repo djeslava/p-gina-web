@@ -27,7 +27,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         mostrarNotificacion("Error al validar la sesión.", "error");
         setTimeout(() => {
             window.location.href = "index.html";
-        }, 1500);
+        }, 150000);
     }
 });
 
