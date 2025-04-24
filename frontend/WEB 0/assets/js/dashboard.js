@@ -1,11 +1,9 @@
 // PENDIENTE: CORREGIR LA VERIFICACIÓN DE SESIÓN
 
 // Verificar la sesión del usuario al cargar la página
-const BACKEND_URL = "https://r-tam.onrender.com";
-
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        const response = await fetch(`${BACKEND_URL}/api/verificar-sesion`, {
+        const response = await fetch("/api/verificar-sesion", {
             method: "GET",
             credentials: "include", // Importante para enviar la cookie de sesión
         });
@@ -27,7 +25,7 @@ document.addEventListener("DOMContentLoaded", async function () {
         mostrarNotificacion("Error al validar la sesión.", "error");
         setTimeout(() => {
             window.location.href = "index.html";
-        }, 150000);
+        }, 1500);
     }
 });
 
@@ -50,7 +48,7 @@ document.querySelector(".logout").addEventListener("click", async function (even
 
             setTimeout(() => {
                 window.location.href = "index.html"; // Redirigir después de 2 segundos
-            }, 150000);
+            }, 2000);
         } else {
             mostrarNotificacion(result.error || "Error al cerrar sesión.", "error");
         }
