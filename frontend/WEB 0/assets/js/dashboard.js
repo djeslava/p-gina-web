@@ -50,7 +50,7 @@ document.querySelector(".logout").addEventListener("click", async function (even
 
             setTimeout(() => {
                 window.location.href = "index.html"; // Redirigir después de 2 segundos
-            }, 2000);
+            }, 150000);
         } else {
             mostrarNotificacion(result.error || "Error al cerrar sesión.", "error");
         }
