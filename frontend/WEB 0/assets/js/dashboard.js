@@ -5,7 +5,7 @@ const BACKEND_URL = "https://r-tam.onrender.com";
 
 document.addEventListener("DOMContentLoaded", async function () {
     try {
-        const response = await fetch("${BACKEND_URL}/api/verificar-sesion", {
+        const response = await fetch(`${BACKEND_URL}/api/verificar-sesion`, {
             method: "GET",
             credentials: "include", // Importante para enviar la cookie de sesión
         });
