@@ -42,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Datos enviados al backend:", { dni, contraseña });
 
         try {
-            const response = await fetch("http://localhost:10000/api/login", {
+            const response = await fetch("http://localhost:5432/api/login", {
                 method: "POST",
                 credentials: "include", // Incluir cookies en la solicitud (para la sesión)
                 headers: { "Content-Type": "application/json" },
