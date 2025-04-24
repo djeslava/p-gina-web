@@ -56,7 +56,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 mostrarNotificacion("Inicio de sesión exitoso. Espera...", "success");
                 setTimeout(() => {
                     window.location.href = "dashboard.html"; // Redirigir tras 2 segundos
-                }, 300000);
+                }, 2000);
             } else {
                 mostrarNotificacion(result.error || "Error inesperado", "error");
             }
@@ -86,5 +86,5 @@ function mostrarNotificacion(mensaje, tipo) {
     // Eliminar la notificación después de 3 segundos
     setTimeout(() => {
         notificacion.remove();
-    }, 3000); // La notificación desaparece después de 3 segundos
+    }, 2000); // La notificación desaparece después de 2 segundos
 }
