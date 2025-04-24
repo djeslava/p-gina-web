@@ -1,9 +1,11 @@
-document.getElementById("formulario-registro").addEventListener("submit", async function(event) {
+document.getElementById("formulario-registro").addEventListener("submit", async function (event) {
     event.preventDefault();
 
     const formData = new FormData(this);
-    const data = Object.fromEntries(formData.entries()); 
-    
+    const data = Object.fromEntries(formData.entries());
+    const port = process.env.PORT || 10000; // Puerto por defecto
+    const url = `http://localhost:${port}/api/registro`; // URL del backend
+
     // Obtener los valores de contraseña
     const passwordField = document.getElementById("contrasena");
     const confirmPasswordField = document.getElementById("confirmar-contrasena");
@@ -37,11 +39,11 @@ document.getElementById("formulario-registro").addEventListener("submit", async 
         confirmPasswordField.style.border = "2px solid red";
         return;
     } else {
-        confirmPasswordField.style.border = "2px solid green";        
+        confirmPasswordField.style.border = "2px solid green";
     }
 
     try {
-        const response = await fetch("http://localhost:3000/api/registro", {
+        const response = await fetch(url, {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
@@ -55,7 +57,7 @@ document.getElementById("formulario-registro").addEventListener("submit", async 
             setTimeout(() => {
                 window.location.href = "index.html"; // Redirigir tras 2 segundos
             }, 2000);
-        } else if (response.status === 409) {  
+        } else if (response.status === 409) {
             mostrarNotificacion("El usuario ya está registrado", "error");
         } else {
             mostrarNotificacion(result.error || "Error inesperado en el servidor", "error");
