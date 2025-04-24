@@ -7,10 +7,10 @@
 //             method: "GET",
 //             credentials: "include", // Importante para enviar la cookie de sesión
 //         });
-
+ 
 //         const result = await response.json();
 //         console.log("Estado de sesión:", result);
-
+// 
 //         if (!response.ok || !result.autenticado) {
 //             // document.body.innerHTML = ""; // Evita mostrar el contenido de dashboard            
 //             // mostrarNotificacion("Acceso denegado. Inicia sesión primero.", "error");
