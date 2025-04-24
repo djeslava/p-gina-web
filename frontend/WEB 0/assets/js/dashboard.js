@@ -34,7 +34,7 @@ document.querySelector(".logout").addEventListener("click", async function (even
     event.preventDefault(); // Evitar que el enlace actúe como un link normal
 
     try {
-        const response = await fetch("https://r-tam-backend.onrender.com/api/logout", {
+        const response = await fetch("/api/logout", {
             method: "POST",
             credentials: "include", // Para que se envíen cookies de sesión
             headers: { "Content-Type": "application/json" }

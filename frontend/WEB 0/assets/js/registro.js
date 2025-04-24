@@ -41,7 +41,7 @@ document.getElementById("formulario-registro").addEventListener("submit", async 
     }
 
     try {
-        const response = await fetch("https://r-tam-backend.onrender.com/api/registro", {
+        const response = await fetch("/api/registro", {
             method: "POST",
             headers: { "Content-Type": "application/json" },
             body: JSON.stringify(data),
