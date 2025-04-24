@@ -4,8 +4,3 @@ services:
     runtime: node
     buildCommand: npm install && cd backend && npm run build
     startCommand: npm start
-envVars:
-  - key: PORT
-    value: 10000
-  - key: NODE_ENV
-    value: production
