@@ -7,7 +7,7 @@
 //             method: "GET",
 //             credentials: "include", // Importante para enviar la cookie de sesión
 //         });
-// 
+ 
 //         const result = await response.json();
 //         console.log("Estado de sesión:", result);
 // 
@@ -15,11 +15,11 @@
 //             // document.body.innerHTML = ""; // Evita mostrar el contenido de dashboard            
 //             // mostrarNotificacion("Acceso denegado. Inicia sesión primero.", "error");
 //             window.location.href = "index.html"; // Redirigir al login
-// 
+
 //         } else {
 //             mostrarNotificacion(`Bienvenido, ${result.usuario}.`, "success");
 //         }
-// 
+
 //     } catch (error) {
 //         console.error("Error al verificar sesión:", error);
 //         mostrarNotificacion("Error al validar la sesión.", "error");
