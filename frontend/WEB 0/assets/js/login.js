@@ -1,7 +1,5 @@
 document.addEventListener("DOMContentLoaded", function () {
     const form = document.getElementById("formulario-login");
-    const port = process.env.PORT || 10000; // Puerto por defecto
-    const url = `http://localhost:${port}/api/login`; // URL del backend
 
     if (!form) {
         console.error("Error: No se encontró el formulario de login.");
@@ -44,7 +42,7 @@ document.addEventListener("DOMContentLoaded", function () {
         console.log("Datos enviados al backend:", { dni, contraseña });
 
         try {
-            const response = await fetch(url, {
+            const response = await fetch("http://localhost:10000/api/login", {
                 method: "POST",
                 credentials: "include", // Incluir cookies en la solicitud (para la sesión)
                 headers: { "Content-Type": "application/json" },
