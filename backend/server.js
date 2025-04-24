@@ -83,11 +83,11 @@ app.get('/healthcheck', async (req, res) => {
 });
 
 // Sirve archivos estáticos del frontend
-app.use(express.static(path.join(__dirname, '../frontend')));
+app.use(express.static(path.join(__dirname, '../frontend/WEB 0')));
 
 // Ruta raíz para el frontend
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, '../frontend/index.html'))
+    res.sendFile(path.join(__dirname, '../frontend/WEB 0/index.html'))
 });
 
 // Ruta para verificar que el backend funciona
